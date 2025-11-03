@@ -14,10 +14,10 @@ const Navbar = () => {
                         <Link to="/"><img src={assets.logo} alt="Logo" /></Link>
                     </div>
                     <ul className="menu">
-                        <li className={activeMenu === "home" && "active"} onClick={() => setActiveMenu("home")}><a href="#">home</a></li>
-                        <li className={activeMenu === "menu" && "active"} onClick={() => setActiveMenu("menu")}><a href="#">Menu</a></li>
-                        <li className={activeMenu === "mobile-app" && "active"} onClick={() => setActiveMenu("mobile-app")}><a href="#">mobile app</a></li>
-                        <li className={activeMenu === "contact-us" && "active"} onClick={() => setActiveMenu("contact-us")}><a href="#">contact us</a></li>
+                        <li className={activeMenu === "home" ? "active" : ""} onClick={() => setActiveMenu("home")}><a href="#">home</a></li>
+                        <li className={activeMenu === "menu" ? "active" : ""} onClick={() => setActiveMenu("menu")}><a href="#">Menu</a></li>
+                        <li className={activeMenu === "mobile-app" ? "active" : ""} onClick={() => setActiveMenu("mobile-app")}><a href="#">mobile app</a></li>
+                        <li className={activeMenu === "contact-us" ? "active" : ""} onClick={() => setActiveMenu("contact-us")}><a href="#">contact us</a></li>
                     </ul>
                     <div className="menu_right">
                         <div className="search_icon">

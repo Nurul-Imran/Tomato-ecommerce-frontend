@@ -1,11 +1,13 @@
 import React from "react";
 import "./Banner.css";
 
+import { assets } from '../../assets/assets';
+
 const Banner = () => {
   return (
     <section id="banner">
       <div className="container">
-        <div className="banner_wrapper">
+        <div className="banner_wrapper" style={{background: `url('${assets.header_img}')`}}>
           <div className="banner_content">
             <h1>
               <span>Order your</span> favourite food here
