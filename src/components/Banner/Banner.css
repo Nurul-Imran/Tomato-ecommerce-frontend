@@ -1,0 +1,38 @@
+.banner_wrapper{
+    background: url('./header_img.png') no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 30px;
+}
+.banner_content{
+    padding: 200px 60px 60px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 30px;
+    color: #fff; 
+    animation: fadeIn 3s;
+}
+.banner_content h1{
+    font-weight: 500;
+    font-size: max(4.5vw, 22px);
+    text-transform: capitalize;
+    display: flex;
+    flex-direction: column;
+}
+.banner_content p{
+    max-width: 78%;
+    font-size: max(1vw, 16px);
+    margin: 0;
+}
+.banner_content button{
+    color: #747474;
+    background-color: white;
+    border-radius: 50px;
+    padding: 1vw 2vw;
+    font-size: max(1vw, 14px);
+    transition: all linear 0.3s;
+}
+.banner_content button:hover{
+    background-color: #ded6d5;
+}
