@@ -17,21 +17,21 @@
 .nav_wrapper .logo{
     width: 175px;
 }
-.nav_wrapper .menu, .nav_wrapper .menu_right{
+.menu, .menu_right{
     align-items: center;
     justify-content: center;
     gap: 30px;
     display: none;
 }
-.nav_wrapper .menu li{
+.menu li{
   text-transform: capitalize;
   color: #49557e;
   font-weight: 500;
 }
-.nav_wrapper .menu .active{
+.menu .active{
     position: relative;
 }
-.nav_wrapper .menu .active::after{
+.menu .active::after{
     position: absolute;
     bottom: 0;
     left: 0;
@@ -40,9 +40,6 @@
     height: 2px;
     background-color: #49557e;
 }
-/* .nav_wrapper .menu_right{
-    gap: 40px;
-} */
 .menu_right .search_icon {
     cursor: pointer;
 }
@@ -69,17 +66,56 @@
     background-color: tomato;
     color: white;
 }
-.side_menu_bar{
-    font-size: 35px;
-    cursor: pointer;
-}
+
 @media (max-width: 576px){
     .nav_wrapper .logo{
         width: 145px;
     }
 }
+
+@media (max-width: 991px){
+    .side_menu_bar{
+        font-size: 35px;
+        cursor: pointer;
+        position: relative;
+    }
+    .side_menu {
+        position: absolute;
+        width: 320px;
+        bottom: -15px;
+        right: 0;
+        transform: translateY(100%);
+        background-color: #303030;
+        padding: 80px 50px 60px;
+        border-radius: 8px;
+        animation: fadeIn 0.5s;
+    }
+    .side_menu > .menu, .side_menu > .menu_right{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 20px;
+    }
+    .side_menu > .menu li{
+        color: white;
+    }
+    .side_menu > .menu_right{
+        margin-top: 50px;
+    }
+    .side_menu > .menu_right button{
+        color: white;
+    }
+    .cross{
+        position: absolute;
+        top: 25px;
+        right: 35px;
+        color: white;
+        font-size: 22px;
+        cursor: pointer;
+    }
+}
 @media (min-width: 992px) {
-   .nav_wrapper .menu, .nav_wrapper .menu_right{
+    .menu, .menu_right{
         display: flex;
     } 
     .side_menu_bar{
