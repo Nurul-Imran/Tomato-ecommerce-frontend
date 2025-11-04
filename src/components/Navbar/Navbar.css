@@ -1,5 +1,13 @@
 #nav{
     padding: 30px 0;
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: white;
+    z-index: 1000;
+}
+#nav.scrolled{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 .nav_wrapper{
     display: flex;
@@ -10,10 +18,10 @@
     width: 175px;
 }
 .nav_wrapper .menu, .nav_wrapper .menu_right{
-    display: flex;
     align-items: center;
     justify-content: center;
     gap: 30px;
+    display: none;
 }
 .nav_wrapper .menu li{
   text-transform: capitalize;
@@ -32,9 +40,9 @@
     height: 2px;
     background-color: #49557e;
 }
-.nav_wrapper .menu_right{
+/* .nav_wrapper .menu_right{
     gap: 40px;
-}
+} */
 .menu_right .search_icon {
     cursor: pointer;
 }
@@ -61,3 +69,16 @@
     background-color: tomato;
     color: white;
 }
+.side_menu_bar{
+    font-size: 35px;
+    cursor: pointer;
+}
+@media (min-width: 992px) {
+   .nav_wrapper .menu, .nav_wrapper .menu_right{
+        display: flex;
+    } 
+    .side_menu_bar{
+        display: none;
+    }
+}
+

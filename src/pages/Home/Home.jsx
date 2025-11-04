@@ -13,8 +13,8 @@ const Home = () => {
             <Banner />
             <ExploreMenu category={category} setCategory={setCategory} />
             <FoodDisplay category={category} />
-            <DownloadApp />
-            <Footer />
+            {/* <DownloadApp /> */}
+            {/* <Footer /> */}
         </>
     )
 }

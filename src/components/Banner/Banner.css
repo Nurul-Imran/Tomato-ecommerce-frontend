@@ -15,7 +15,7 @@
 }
 .banner_content h1{
     font-weight: 500;
-    font-size: max(4.5vw, 22px);
+    font-size: max(4.5vw, 30px);
     text-transform: capitalize;
     display: flex;
     flex-direction: column;
@@ -30,9 +30,46 @@
     background-color: white;
     border-radius: 50px;
     padding: 1vw 2vw;
-    font-size: max(1vw, 14px);
+    font-size: max(1vw, 16px);
     transition: all linear 0.3s;
 }
 .banner_content button:hover{
     background-color: #ded6d5;
+}
+
+@media (max-width: 575px){
+    .banner_content {
+        padding: 50px 30px;
+        gap: 20px;
+    }
+    .banner_content h1 {
+        font-size: 25px;
+        line-height: 140%;
+    }
+    .banner_content p{
+        display: none;
+    }
+    .banner_content button{
+        padding: 12px 20px;
+    }
+}
+@media (min-width: 576px) and (max-width: 767px){
+    .banner_content {
+        padding: 60px;
+        gap: 20px;
+    }
+    .banner_content button{
+        padding: 12px 20px;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px){
+    .banner_content {
+        padding: 100px 60px 60px;
+        gap: 20px;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199px){
+    .banner_content {
+        padding: 150px 60px 60px;
+    }
 }
