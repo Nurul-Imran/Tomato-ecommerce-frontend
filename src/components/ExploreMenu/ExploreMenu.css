@@ -4,7 +4,7 @@
 .explore_menu_heading h2 {
   color: rgb(38, 38, 38);
   font-weight: 500;
-  font-size: max(1.8vw, 25px);
+  font-size: 30px;
 }
 .explore_menu_heading p {
   max-width: 60%;
@@ -48,6 +48,9 @@
 }
 
 @media (max-width: 575px) {
+  .explore_menu_heading h2 {
+    font-size: 25px;
+  }
   .explore_menu_heading p {
     max-width: 85%;
     font-size: 16px;
@@ -61,6 +64,9 @@
   }
 }
 @media (min-width: 576px) and (max-width: 767px) {
+  .explore_menu_heading h2 {
+    font-size: 28px;
+  }
   .explore_menu_heading p {
     max-width: 90%;
   }

@@ -73,6 +73,11 @@
     font-size: 35px;
     cursor: pointer;
 }
+@media (max-width: 576px){
+    .nav_wrapper .logo{
+        width: 145px;
+    }
+}
 @media (min-width: 992px) {
    .nav_wrapper .menu, .nav_wrapper .menu_right{
         display: flex;
