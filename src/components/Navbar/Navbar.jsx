@@ -6,9 +6,9 @@ import { ImCross } from "react-icons/im";
 import { assets } from "../../assets/assets";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ setIsOpenSignUp }) => {
   const [activeMenu, setActiveMenu] = useState("home");
-  const [openSideMenu, setOpenSideMenu] = useState(false);
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -71,57 +71,62 @@ const Navbar = () => {
               </Link>
               <div className="dot"></div>
             </div>
-            <button>Sing in</button>
+            <button onClick={() => setIsOpenSignUp(true)}>Sign in</button>
           </div>
           <div className="side_menu_bar">
-            <IoMenu onClick={() => setOpenSideMenu(true)} />
-            {
-              openSideMenu && (
-                <div className="side_menu">
-                  <ul className="menu">
-                    <li
-                      className={activeMenu === "home" ? "active" : ""}
-                      onClick={() => setActiveMenu("home")}
-                    >
-                      <Link to="/">home</Link>
-                    </li>
-                    <li
-                      className={activeMenu === "menu" ? "active" : ""}
-                      onClick={() => setActiveMenu("menu")}
-                    >
-                      <a href="#explore_menu">Menu</a>
-                    </li>
-                    <li
-                      className={activeMenu === "mobile-app" ? "active" : ""}
-                      onClick={() => setActiveMenu("mobile-app")}
-                    >
-                      <a href="#download_app">mobile app</a>
-                    </li>
-                    <li
-                      className={activeMenu === "contact-us" ? "active" : ""}
-                      onClick={() => setActiveMenu("contact-us")}
-                    >
-                      <a href="#footer">contact us</a>
-                    </li>
-                  </ul>
-                  <div className="menu_right">
-                    <div className="search_icon">
-                      <img src={assets.search_icon} alt="Search Icon" />
-                    </div>
-                    <div className="cart_icon_box">
-                      <Link>
-                        <img src={assets.basket_icon} alt="Cart Icon" />
-                      </Link>
-                      <div className="dot"></div>
-                    </div>
-                    <button>Sing in</button>
+            <IoMenu onClick={() => setIsSideMenuOpen(true)} />
+            {isSideMenuOpen && (
+              <div className="side_menu">
+                <ul className="menu">
+                  <li
+                    className={activeMenu === "home" ? "active" : ""}
+                    onClick={() => setActiveMenu("home")}
+                  >
+                    <Link to="/">home</Link>
+                  </li>
+                  <li
+                    className={activeMenu === "menu" ? "active" : ""}
+                    onClick={() => setActiveMenu("menu")}
+                  >
+                    <a href="#explore_menu">Menu</a>
+                  </li>
+                  <li
+                    className={activeMenu === "mobile-app" ? "active" : ""}
+                    onClick={() => setActiveMenu("mobile-app")}
+                  >
+                    <a href="#download_app">mobile app</a>
+                  </li>
+                  <li
+                    className={activeMenu === "contact-us" ? "active" : ""}
+                    onClick={() => setActiveMenu("contact-us")}
+                  >
+                    <a href="#footer">contact us</a>
+                  </li>
+                </ul>
+                <div className="menu_right">
+                  <div className="search_icon">
+                    <img src={assets.search_icon} alt="Search Icon" />
                   </div>
-                  <div className="cross">
-                    <ImCross onClick={() => setOpenSideMenu(false)} />
+                  <div className="cart_icon_box">
+                    <Link>
+                      <img src={assets.basket_icon} alt="Cart Icon" />
+                    </Link>
+                    <div className="dot"></div>
                   </div>
+                  <button
+                    onClick={() => {
+                      setIsOpenSignUp(true);
+                      setIsSideMenuOpen(false);
+                    }}
+                  >
+                    Sing in
+                  </button>
                 </div>
-              )
-            }
+                <div className="cross">
+                  <ImCross onClick={() => setIsSideMenuOpen(false)} />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
