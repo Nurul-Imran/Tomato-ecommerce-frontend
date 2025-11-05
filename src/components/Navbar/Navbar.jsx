@@ -15,7 +15,7 @@ const Navbar = ({ setIsOpenSignUp }) => {
   const handleSideMenuClose = () => {
     setSideMenuClosing(true);
     setTimeout(() => setIsSideMenuOpen(false), 500);
-  }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,13 +38,28 @@ const Navbar = ({ setIsOpenSignUp }) => {
         <div className="nav_wrapper">
           <div className="logo">
             <Link to="/">
-              <img src={assets.logo} alt="Logo" />
+              <img
+                src={assets.logo}
+                alt="Logo"
+                onClick={() => {
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                }}
+              />
             </Link>
           </div>
           <ul className="menu">
             <li
               className={activeMenu === "home" ? "active" : ""}
-              onClick={() => setActiveMenu("home")}
+              onClick={() => {
+                setActiveMenu("home");
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
+              }}
             >
               <Link to="/">home</Link>
             </li>
@@ -80,16 +95,26 @@ const Navbar = ({ setIsOpenSignUp }) => {
             <button onClick={() => setIsOpenSignUp(true)}>Sign in</button>
           </div>
           <div className="side_menu_bar">
-            <IoMenu onClick={() => {
-              setSideMenuClosing(false);
-              setIsSideMenuOpen(true)
-            }} />
+            <IoMenu
+              onClick={() => {
+                setSideMenuClosing(false);
+                setIsSideMenuOpen(true);
+              }}
+            />
             {isSideMenuOpen && (
-              <div className={`side_menu ${sideMenuClosing ? "closed" : "opened"}`}>
+              <div
+                className={`side_menu ${sideMenuClosing ? "closed" : "opened"}`}
+              >
                 <ul className="menu">
                   <li
                     className={activeMenu === "home" ? "active" : ""}
-                    onClick={() => setActiveMenu("home")}
+                    onClick={() => {
+                      setActiveMenu("home");
+                      window.scrollTo({
+                        top: 0,
+                        behavior: "smooth", // smooth scrolling animation
+                      });
+                    }}
                   >
                     <Link to="/">home</Link>
                   </li>

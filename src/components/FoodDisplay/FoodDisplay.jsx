@@ -6,6 +6,7 @@ import FoodItem from '../FoodItem/FoodItem';
 
 const FoodDisplay = ({category}) => {
     const {food_list} = useContext(storeContext);
+    let foodDisplayCount = 1;
     return (
         <section id="food_display">
             <div className="container">
@@ -14,7 +15,9 @@ const FoodDisplay = ({category}) => {
                     <div className="food_display_list">
                         { (food_list.length > 0) ? (
                             food_list.map((item, index) => {
-                                if (category === item.category || category === "all"){
+                                if ((category === item.category || category === "all") && foodDisplayCount <= 12){
+                                    if (category === "all") foodDisplayCount++
+                                    
                                     return <FoodItem key={index} foodItem={item} />
                                 }
                             })
