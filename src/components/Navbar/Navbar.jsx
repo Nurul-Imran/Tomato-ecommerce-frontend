@@ -10,6 +10,12 @@ const Navbar = ({ setIsOpenSignUp }) => {
   const [activeMenu, setActiveMenu] = useState("home");
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [sideMenuClosing, setSideMenuClosing] = useState(false);
+
+  const handleSideMenuClose = () => {
+    setSideMenuClosing(true);
+    setTimeout(() => setIsSideMenuOpen(false), 500);
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,9 +80,12 @@ const Navbar = ({ setIsOpenSignUp }) => {
             <button onClick={() => setIsOpenSignUp(true)}>Sign in</button>
           </div>
           <div className="side_menu_bar">
-            <IoMenu onClick={() => setIsSideMenuOpen(true)} />
+            <IoMenu onClick={() => {
+              setSideMenuClosing(false);
+              setIsSideMenuOpen(true)
+            }} />
             {isSideMenuOpen && (
-              <div className="side_menu">
+              <div className={`side_menu ${sideMenuClosing ? "closed" : "opened"}`}>
                 <ul className="menu">
                   <li
                     className={activeMenu === "home" ? "active" : ""}
@@ -123,7 +132,7 @@ const Navbar = ({ setIsOpenSignUp }) => {
                   </button>
                 </div>
                 <div className="cross">
-                  <ImCross onClick={() => setIsSideMenuOpen(false)} />
+                  <ImCross onClick={handleSideMenuClose} />
                 </div>
               </div>
             )}

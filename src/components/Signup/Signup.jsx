@@ -5,12 +5,19 @@ import './signup.css'
 
 const Signup = ({setIsOpenSignUp}) => {
     const [isLogin, setIsLogin] = useState(true);
+    const [closing, setClosing] = useState(false);
+
+    const handleClose = () => {
+        setClosing(true);
+        setTimeout(() => setIsOpenSignUp(false), 500)
+        
+    }
     return (
-        <div id='signup'>
+        <div id='signup' className={closing ? "fadeOut" : "fadeIn"}>
             <div className="signup_content">
                 <div className="form_heading">
                     <h3>{isLogin ? "Login" : "Sign up" }</h3>
-                    <RxCross1 onClick={() => setIsOpenSignUp(false)} className='cross_icon' />
+                    <RxCross1 onClick={handleClose} className='cross_icon' />
                 </div>
                 <form className='form' action="/" method="post">
                     {!isLogin && (
