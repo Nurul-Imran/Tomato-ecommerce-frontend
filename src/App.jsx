@@ -7,6 +7,7 @@ import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
 import Error from './pages/Error/Error';
 import Navbar from './components/Navbar/Navbar';
 import Signup from './components/Signup/Signup';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
   const [isOpenSignUp, setIsOpenSignUp] = useState(false);
@@ -20,6 +21,7 @@ const App = () => {
         <Route path='/place-order' element={<PlaceOrder />} />
         <Route path='*' element={<Error />} />
       </Routes>
+      <Footer />
     </>
   )
 }

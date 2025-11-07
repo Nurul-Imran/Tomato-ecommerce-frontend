@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
 import { ImCross } from "react-icons/im";
 
 import { assets } from "../../assets/assets";
 import "./Navbar.css";
+import { storeContext } from "../../context/storeContext";
 
 const Navbar = ({ setIsOpenSignUp }) => {
+  const { cartItems } = useContext(storeContext);
   const [activeMenu, setActiveMenu] = useState("home");
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -87,10 +89,14 @@ const Navbar = ({ setIsOpenSignUp }) => {
               <img src={assets.search_icon} alt="Search Icon" />
             </div>
             <div className="cart_icon_box">
-              <Link>
+              <Link to="/cart">
                 <img src={assets.basket_icon} alt="Cart Icon" />
               </Link>
-              <div className="dot"></div>
+              {
+                (Object.keys(cartItems).length > 0) && (
+                  <div className="dot"></div>
+                )
+              }
             </div>
             <button onClick={() => setIsOpenSignUp(true)}>Sign in</button>
           </div>
@@ -142,7 +148,7 @@ const Navbar = ({ setIsOpenSignUp }) => {
                     <img src={assets.search_icon} alt="Search Icon" />
                   </div>
                   <div className="cart_icon_box">
-                    <Link>
+                    <Link to='/cart'>
                       <img src={assets.basket_icon} alt="Cart Icon" />
                     </Link>
                     <div className="dot"></div>
