@@ -15,7 +15,7 @@
         font-size: 25px;
     }  
     .food_display_list{
-        grid-template-columns: repeat(auto-fill, 280px);
+        grid-template-columns: repeat(auto-fill, 310px);
         justify-content: center;
         gap: 20px;
     }
