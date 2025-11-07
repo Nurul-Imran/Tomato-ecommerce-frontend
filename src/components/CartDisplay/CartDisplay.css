@@ -26,4 +26,14 @@ td > img{
 }
 .No_cart_item_heading{
     font-size: 25px;
+    line-height: 140%;
+}
+
+@media (max-width: 575px) {
+    #cart_display{
+        padding: 60px 0;
+    }
+    .No_cart_item_heading{
+        font-size: 20px;
+    }
 }

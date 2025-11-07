@@ -49,12 +49,8 @@ const Navbar = ({ setIsOpenSignUp }) => {
       }
     };
 
-    if (isSideMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
+    document.addEventListener("mousedown", handleClickOutside);
+    
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -69,6 +65,8 @@ const Navbar = ({ setIsOpenSignUp }) => {
       const menu = document.getElementById("explore_menu");
       const mobileApp = document.getElementById("download_app");
       const contact = document.getElementById("footer");
+
+      if (!menu || !mobileApp || !contact) return;
 
       if (scrollY >= contact.offsetTop - footerOffset) {
         setActiveMenu("contact-us");
