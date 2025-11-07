@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
 import { ImCross } from "react-icons/im";
@@ -13,6 +13,8 @@ const Navbar = ({ setIsOpenSignUp }) => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [sideMenuClosing, setSideMenuClosing] = useState(false);
+
+  const sideMenuRef = useRef(null); //  Reference for side menu
 
   const handleSideMenuClose = () => {
     setSideMenuClosing(true);
@@ -34,6 +36,56 @@ const Navbar = ({ setIsOpenSignUp }) => {
     // Cleanup on component unmount
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  
+  // Detect click outside of the side menu
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        sideMenuRef.current &&
+        !sideMenuRef.current.contains(event.target)
+      ) {
+        handleSideMenuClose();
+      }
+    };
+
+    if (isSideMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isSideMenuOpen]);
+
+   useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const offset = window.innerHeight * 0.2; // 20% of screen height
+      const footerOffset = window.innerHeight * 0.5; // detect footer earlier
+
+      const menu = document.getElementById("explore_menu");
+      const mobileApp = document.getElementById("download_app");
+      const contact = document.getElementById("footer");
+
+      if (scrollY >= contact.offsetTop - footerOffset) {
+        setActiveMenu("contact-us");
+      } else if (scrollY >= mobileApp.offsetTop - offset) {
+        setActiveMenu("mobile-app");
+      } else if (scrollY >= menu.offsetTop - offset) {
+        setActiveMenu("menu");
+      } else {
+        setActiveMenu("home");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  
   return (
     <nav id="nav" className={`${scrolled ? "scrolled" : ""}`}>
       <div className="container">
@@ -67,19 +119,16 @@ const Navbar = ({ setIsOpenSignUp }) => {
             </li>
             <li
               className={activeMenu === "menu" ? "active" : ""}
-              onClick={() => setActiveMenu("menu")}
             >
               <a href="#explore_menu">Menu</a>
             </li>
             <li
               className={activeMenu === "mobile-app" ? "active" : ""}
-              onClick={() => setActiveMenu("mobile-app")}
             >
               <a href="#download_app">mobile app</a>
             </li>
             <li
               className={activeMenu === "contact-us" ? "active" : ""}
-              onClick={() => setActiveMenu("contact-us")}
             >
               <a href="#footer">contact us</a>
             </li>
@@ -89,7 +138,7 @@ const Navbar = ({ setIsOpenSignUp }) => {
               <img src={assets.search_icon} alt="Search Icon" />
             </div>
             <div className="cart_icon_box">
-              <Link to="/cart">
+              <Link to="/cart" className={activeMenu === "cart" ? "active" : ""} onClick={() => setActiveMenu("cart")}>
                 <img src={assets.basket_icon} alt="Cart Icon" />
               </Link>
               {
@@ -100,6 +149,7 @@ const Navbar = ({ setIsOpenSignUp }) => {
             </div>
             <button onClick={() => setIsOpenSignUp(true)}>Sign in</button>
           </div>
+          {/* Mobile Side Menu */}
           <div className="side_menu_bar">
             <IoMenu
               onClick={() => {
@@ -108,7 +158,7 @@ const Navbar = ({ setIsOpenSignUp }) => {
               }}
             />
             {isSideMenuOpen && (
-              <div
+              <div ref={sideMenuRef}
                 className={`side_menu ${sideMenuClosing ? "closed" : "opened"}`}
               >
                 <ul className="menu">
@@ -126,19 +176,16 @@ const Navbar = ({ setIsOpenSignUp }) => {
                   </li>
                   <li
                     className={activeMenu === "menu" ? "active" : ""}
-                    onClick={() => setActiveMenu("menu")}
                   >
                     <a href="#explore_menu">Menu</a>
                   </li>
                   <li
                     className={activeMenu === "mobile-app" ? "active" : ""}
-                    onClick={() => setActiveMenu("mobile-app")}
                   >
                     <a href="#download_app">mobile app</a>
                   </li>
                   <li
                     className={activeMenu === "contact-us" ? "active" : ""}
-                    onClick={() => setActiveMenu("contact-us")}
                   >
                     <a href="#footer">contact us</a>
                   </li>
@@ -148,7 +195,7 @@ const Navbar = ({ setIsOpenSignUp }) => {
                     <img src={assets.search_icon} alt="Search Icon" />
                   </div>
                   <div className="cart_icon_box">
-                    <Link to='/cart'>
+                    <Link className={activeMenu === "cart" ? "active" : ""} onClick={() => setActiveMenu("cart")} to='/cart'>
                       <img src={assets.basket_icon} alt="Cart Icon" />
                     </Link>
                     <div className="dot"></div>

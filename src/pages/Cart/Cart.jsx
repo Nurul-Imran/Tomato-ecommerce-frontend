@@ -6,7 +6,7 @@ import CartTotal from "../../components/CartTotal/CartTotal";
 
 const Cart = () => {
   return (
-    <>
+    <div id="cart">
       <CartItems />
       <div className="cart_calculation_main">
         <div className="container">
@@ -22,7 +22,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
