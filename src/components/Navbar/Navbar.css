@@ -104,7 +104,51 @@
   height: 2px;
   background-color: #49557e;
 }
+.profile{
+  position: relative;
+}
+.profile:hover .profile_dropdown{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.profile .profile_icon{
+  width: 20px;
+  cursor: pointer;
+}
+.profile_dropdown{
+  position: absolute;
+  top: 35px;
+  right: 0;
 
+  padding: 22px 35px;
+  background-color: #ff4f30;
+  border-radius: 4px;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+  z-index: 100;
+  transform: translateY(10px);
+  visibility: hidden;
+  opacity: 0;
+  transition: linear 0.5s;
+}
+.profile_dropdown .item{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.profile_dropdown .item .icon{
+  font-size: 22px;
+}
+.profile_dropdown .item span{
+  font-size: 18px;
+  text-transform: capitalize;
+}
 
 @media (max-width: 576px) {
   .nav_wrapper .logo {

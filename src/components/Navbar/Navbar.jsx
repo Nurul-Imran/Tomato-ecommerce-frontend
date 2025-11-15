@@ -2,10 +2,13 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
 import { ImCross } from "react-icons/im";
+import { BsCart2 } from "react-icons/bs";
+import { HiOutlineLogout } from "react-icons/hi";
 
 import { assets } from "../../assets/assets";
 import "./Navbar.css";
 import { storeContext } from "../../context/storeContext";
+import { toast } from "react-toastify";
 
 const Navbar = ({ setIsOpenSignUp }) => {
   const { cartItems } = useContext(storeContext);
@@ -13,6 +16,7 @@ const Navbar = ({ setIsOpenSignUp }) => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [sideMenuClosing, setSideMenuClosing] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   const sideMenuRef = useRef(null); //  Reference for side menu
 
@@ -83,6 +87,10 @@ const Navbar = ({ setIsOpenSignUp }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+
+  }, [token])
+
   
   return (
     <nav id="nav" className={`${scrolled ? "scrolled" : ""}`}>
@@ -145,7 +153,34 @@ const Navbar = ({ setIsOpenSignUp }) => {
                 )
               }
             </div>
-            <button onClick={() => setIsOpenSignUp(true)}>Sign in</button>
+            {
+              (localStorage.getItem("token")) ? (
+                <div className="profile">
+                  <img className="profile_icon" src={assets.profile_icon} alt="profile icon" />
+                  <div className="profile_dropdown">
+                    <div className="item logout" onClick={() => {
+                        setToken("");
+                        localStorage.removeItem("token");
+                        toast.success("Logout Successfully.")
+                      }}>
+                      <div className="icon">
+                        <HiOutlineLogout />
+                      </div>
+                      <span>logout</span>
+                    </div>
+                    <div className="item order">
+                      <div className="icon">
+                        <BsCart2 />
+                      </div>
+                      <span>order</span>
+                    </div>
+                  </div>
+                </div>
+              ): (
+                <button onClick={() => setIsOpenSignUp(true)}>Sign in</button>
+              )
+            }
+            
           </div>
           {/* Mobile Side Menu */}
           <div className="side_menu_bar">

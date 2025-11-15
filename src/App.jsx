@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import Home from './pages/Home/Home';
 import Cart from './pages/Cart/Cart';
@@ -13,6 +14,7 @@ const App = () => {
   const [isOpenSignUp, setIsOpenSignUp] = useState(false);
   return (
     <>
+      <ToastContainer position='top-left' autoClose={2500} />
       { isOpenSignUp && <Signup setIsOpenSignUp={setIsOpenSignUp} /> }
       <Navbar setIsOpenSignUp={setIsOpenSignUp} />
       <Routes>
